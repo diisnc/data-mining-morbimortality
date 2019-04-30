@@ -1,0 +1,9 @@
+NOTAS SOBRE O TEMA
+
+Morbimortalidade é um conceito da medicina que se refere ao índice de pessoas mortas em decorrência de uma doença específica dentro de determinado grupo populacional.
+
+A formação do conceito da morbimortalidade consiste na relação entre a morbilidade e a mortalidade, sendo que a primeira é referente ao número de indivíduos portadores de determinada doença em relação ao total da população analisada. Já a mortalidade é a estatística sobre as pessoas mortas num grupo específico.
+
+Assim, a morbimortalidade observa o número de indivíduos que morreram como consequência de uma enfermidade, em relação ao número de habitantes de dado lugar e período de tempo.
+
+Por exemplo, ao analisar as causas da morte de 100 indivíduos que pertencem a determinado local, se 80 dessas mortes tiver sido em decorrência da dengue, então pode-se concluir que o índice de morbimortalidade da dengue é de 80% neste ambiente
