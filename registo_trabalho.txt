@@ -21,10 +21,10 @@ Passos CRISP-DM:
 					  (- Em caso de criação de uma nova coluna no dataset, explicar nesta secção)
 
 
-	Passos a realizar: - Eliminar registos com campos nulos/ruído;
+	Passos realizados: - Eliminar registos com campos nulos/ruído;
 					   - Normalizar:
 					   		- valores booleanos para 0 ou 1;
-					   		- siglas para números (0,1,2,...) (standardização) APENAS OS VALORES TIPICOS, os restantes (outliers) ficam com a sigla "outros" e um número próprio;
+					   		- siglas para números (0,1,2,...) (standardização) APENAS OS VALORES TIPICOS, os restantes (outliers) ficam com a sigla "outros" e um número próprio, dependendo das colunas;
 					   - Eliminar colunas desnecessárias:
 					   		- Colunas parte verde mantêm-se;
 					   		- Colunas parte azul eliminar "Data Cx" e "Outras intervenções";
@@ -35,37 +35,37 @@ Passos CRISP-DM:
 					   			- colocar também "outras intervenções" em valores atípicos (acontece 1x só)
 					   		- se "Intervenção mama" = vazio & "Intervenção axila" = vazio & "Outras intervenções" = vazio, eliminar coluna; (não acontece)
 					   		- se "Intervenção mama" = vazio OU "Intervenção axila" = vazio, pôr sigla SI "sem intervenção" e normalizar.
-
+					   	- Oversampling
 					   (- Não temos valores contínuos ou com casas decimais, logo não vamos normalizar nesse sentido)
-					   (- Não vamos utilizar oversampling porque temos vários casos de "complicações" e "sem complicações")
+
 
 
 	Análise coluna a coluna: - Parte verde
 	[decisoes]						- Nome -> manter coluna, id único;
-											[0;infinito]
+										   - set role no rapidminer quando se executarem os algoritmos, agora mantém
 									- Idade -> manter coluna;
-											[0;infinito]
+												[0;infinito]
 									- Tabaco -> manter coluna, normalizar;
-											{0,1}
+												{0,1}
 									- Diabetes -> manter coluna, normalizar;
-											{0,1}
+												{0,1}
 									- Imunoss. -> manter coluna, normalizar;
-											{0,1}
+												{0,1}
 									- Hipocoag. -> manter coluna, normalizar;
-											{0,1}
+												{0,1}
 									- QTx NA -> manter coluna, normalizar;
-											{0,1}
+												{0,1}
 							 - Parte azul
 							 		- Data Cx -> eliminar coluna;
 							 		- Cx/Ambulatório -> manter coluna, normalizar;
-							 				{0,1}
-							 				0 - cirurgia
-							 				1 - ambulatorio
+							 					{0,1}
+							 					0 - cirurgia
+							 					1 - ambulatorio
 							 		- Ben./Malig. -> manter coluna, normalizar;
-							 				{0,1}
-							 				0 - benigno
-							 				1 - malino
-							 		- Diagnostico -> manter coluna, normalizar (0,1,2,3...). Valores atípicos ficam como "outros", e com um número próprio;
+							 					{0,1}
+							 					0 - benigno
+							 					1 - malino
+							 		- Diagnostico -> manter coluna, standardizar (não é normalizar) (0,1,2,3...). Valores atípicos ficam como "outros", e com um número próprio;
 							 				{O, F, CI NST, CI T, CIM, CDIS1, CDIS2, CDIS3, CDIS3M, G, CLI}
 							 				 0  1     2      3    4     5       6      7      8    9   10
 							 				O - outros
@@ -81,12 +81,12 @@ Passos CRISP-DM:
 							 				CDIS3M - carcinoma ductal in situ grau elevado com microinvasão
 							 				G -ginecomastia
 							 				CLI - carcinoma lobular invasivo
-							 		- Lateralidade -> manter coluna, normalizar;
-							 				{0,1,2}
-							 				0 - Esquerda
-							 				1 - Direita
-							 				2 - Ambas
-							 		- Intervençao mama -> manter coluna, normalizar (0,1,2,3...). Valores atípicos ficam como "outros", e com um número próprio;
+							 		- Lateralidade -> manter coluna, standardizar;
+							 					{0,1,2}
+							 					0 - Esquerda
+							 					1 - Direita
+							 					2 - Ambas
+							 		- Intervençao mama -> manter coluna, standardizar (0,1,2,3...). Valores atípicos ficam como "outros", e com um número próprio;
 							 				{OI, SI, TA, TM, MTPP, BE, FP, A, MRM, EM, MRT, MTPCAM, MT, E, LG}
 							 				  0  1    2   3   4     5   6  7   8   9   10     11    12  13 14
 							 				OI - outra(s) intervenção(s)
@@ -115,11 +115,11 @@ Passos CRISP-DM:
 							 		- Outras intervenções -> eliminar coluna;
 							 - Parte cinzenta
 							 		- Dias -> manter coluna;
-							 				[0;infinito]
+							 					[0;infinito]
 							 		- Antibiótico -> manter coluna, normalizar;
-							 				{0,1}
+							 					{0,1}
 							 		- Hipocoag. -> manter coluna, normalizar;
-							 				{0,1}
+							 					{0,1}
 							 - Parte rosa
 							 		- Data Dx -> eliminar coluna;
 							 		- Dias pós-op. -> eliminar coluna;
@@ -128,9 +128,9 @@ Passos CRISP-DM:
 							 		- Dias Tx -> eliminar coluna.
 							 - ultima coluna manter
 							 		- normalizar, eliminar nulos e eliminar noise
-							 				{0,1}
+							 					{0,1}
 							 		- complicação = complicação da cirurgia e complicaçao pos cirurgia
-							 			(cirurgia correu mal, pós cirurgia nao foi bom e morreu ou houve necessidade de reoperar [pq correu mal], não recuperou bem no pós, etc -> é tudo relevante para ser estudado, o background do doente, p.e., pode ter implicações nisto)
+							 			(cirurgia correu mal; pós cirurgia nao foi bom; morreu; houve necessidade de reoperar [pq correu mal]; não recuperou bem no pós;...-> é tudo relevante para ser estudado, o background do doente, p.e., pode ter implicações nisto)
 
 4 - Modeling --------------------------------------------------------------------------------------
 
