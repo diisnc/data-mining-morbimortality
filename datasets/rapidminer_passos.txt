@@ -1,0 +1,14 @@
+1 - Import data (sem alterações)
+2 - Select Attributes (eliminar colunas)
+3 - Valores desconhecidos eliminar (NULLS/NOISE)
+	(lateralidade, QTx NA, última coluna)
+	(se fosse numerico usar média ou assim, mas nao é o caso)
+	(176->165 doentes)
+	NOTA: eliminar linhas da ultima coluna onde tem texto mas n se sabe se houve complicação ou não -> são NOISE para o nosso caso, como penso ou tratamentos ainda a decorrer. Uma cirurgia que nao foi possivel realizar tb é uma complicação.
+	(165->150 doentes)
+	NOTA2: a lateralidade só tem um valor a null pq foi nos ovarios o procedimento e o problema (cancro ovarios). o tema da morbimortalidade é o cancro mama, por isso este registo foi eliminado. até porque assim lateralidade é normalizada para 0 ou 1
+4 - Completar intervenções (mamária, axila) e diagnosticos
+5 - Mudar tipo dados 1º Numeric to Binominal (ultima cena pq n dá p alterar tipo dados com nulos)
+
+oversampling 150 + 12 = 162 doentes
+			 12 -> 24 doentes com complicações

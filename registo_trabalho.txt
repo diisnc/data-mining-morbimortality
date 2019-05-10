@@ -1,0 +1,174 @@
+Passos CRISP-DM:
+	
+1 - Business Understanding ------------------------------------------------------------------------
+	
+	Se houve complicações ou não
+
+2 - Data Understanding ----------------------------------------------------------------------------
+
+3 - Data Preparation ------------------------------------------------------------------------------
+
+	Passos possíveis: - Eliminar registos com campos nulos/ruído OU estimar valores desconhecidos numericos;
+					  - Converter campos para a mesma unidade(ex: peso em kgs e grs) e, se existirem cálculos, verificar/corrigir;
+					  - Normalizar:
+					  		- valores entre 0 e 1 para valores discretos, com separador decimal o ponto, por exemplo;
+					  		- valores contínuos definir para 0 ou 1 como mínimo e máximo, respetivamente;
+					  		- valores booleanos para 0 ou 1;
+					  		- siglas para números (0,1,2,...) - não se chama normalização, é standardizaçao.
+					  - Oversampling.
+					  
+					  (- Em caso de alteração da variável target, falar nesta secção)
+					  (- Em caso de criação de uma nova coluna no dataset, explicar nesta secção)
+
+
+	Passos a realizar: - Eliminar registos com campos nulos/ruído;
+					   - Normalizar:
+					   		- valores booleanos para 0 ou 1;
+					   		- siglas para números (0,1,2,...) (standardização) APENAS OS VALORES TIPICOS, os restantes (outliers) ficam com a sigla "outros" e um número próprio;
+					   - Eliminar colunas desnecessárias:
+					   		- Colunas parte verde mantêm-se;
+					   		- Colunas parte azul eliminar "Data Cx" e "Outras intervenções";
+					   		- Colunas parte cinzenta mantêm-se;
+					   		- Colunas parte rosa eliminar todas;
+					   - Nas colunas "Intervenção mama", "Intervenção axila" preencher à mão:
+					   		- se "Intervenção mama" = vazio & "Intervenção axila" = vazio & existir informação na coluna "Outras intervenções", pôr a sigla OI "outra intervençao" e normalizar;
+					   			- colocar também "outras intervenções" em valores atípicos (acontece 1x só)
+					   		- se "Intervenção mama" = vazio & "Intervenção axila" = vazio & "Outras intervenções" = vazio, eliminar coluna; (não acontece)
+					   		- se "Intervenção mama" = vazio OU "Intervenção axila" = vazio, pôr sigla SI "sem intervenção" e normalizar.
+
+					   (- Não temos valores contínuos ou com casas decimais, logo não vamos normalizar nesse sentido)
+					   (- Não vamos utilizar oversampling porque temos vários casos de "complicações" e "sem complicações")
+
+
+	Análise coluna a coluna: - Parte verde
+	[decisoes]						- Nome -> manter coluna, id único;
+											[0;infinito]
+									- Idade -> manter coluna;
+											[0;infinito]
+									- Tabaco -> manter coluna, normalizar;
+											{0,1}
+									- Diabetes -> manter coluna, normalizar;
+											{0,1}
+									- Imunoss. -> manter coluna, normalizar;
+											{0,1}
+									- Hipocoag. -> manter coluna, normalizar;
+											{0,1}
+									- QTx NA -> manter coluna, normalizar;
+											{0,1}
+							 - Parte azul
+							 		- Data Cx -> eliminar coluna;
+							 		- Cx/Ambulatório -> manter coluna, normalizar;
+							 				{0,1}
+							 				0 - cirurgia
+							 				1 - ambulatorio
+							 		- Ben./Malig. -> manter coluna, normalizar;
+							 				{0,1}
+							 				0 - benigno
+							 				1 - malino
+							 		- Diagnostico -> manter coluna, normalizar (0,1,2,3...). Valores atípicos ficam como "outros", e com um número próprio;
+							 				{O, F, CI NST, CI T, CIM, CDIS1, CDIS2, CDIS3, CDIS3M, G, CLI}
+							 				 0  1     2      3    4     5       6      7      8    9   10
+							 				O - outros
+							 				F - fibroadenoma
+							 				CI NST - carcinoma invasivo NST (ou Carcinoma ductal sem outras especificações ou ductal NOS)
+							 				(há um caso de CI, não sabemos se é ductal, nst ou subtipo, seguir a moda ci nst)
+							 				CI T - carcinoma invasivo Tipo (envolve todos os subtipos q estavam no dataset)
+							 				CIM - carcinoma invasivo misto
+							 				CDIS1 - carcinoma ductal in situ baixo grau
+							 				CDIS2 - carcinoma ductal in situ grau intermédio
+							 				CDIS3 - carcinoma ductal in situ grau elevado
+							 				(os que apareciam apenas CDIS, se fosse numerico admitia-se a média, como não é admite-se a moda, que é CDIS3)
+							 				CDIS3M - carcinoma ductal in situ grau elevado com microinvasão
+							 				G -ginecomastia
+							 				CLI - carcinoma lobular invasivo
+							 		- Lateralidade -> manter coluna, normalizar;
+							 				{0,1,2}
+							 				0 - Esquerda
+							 				1 - Direita
+							 				2 - Ambas
+							 		- Intervençao mama -> manter coluna, normalizar (0,1,2,3...). Valores atípicos ficam como "outros", e com um número próprio;
+							 				{OI, SI, TA, TM, MTPP, BE, FP, A, MRM, EM, MRT, MTPCAM, MT, E, LG}
+							 				  0  1    2   3   4     5   6  7   8   9   10     11    12  13 14
+							 				OI - outra(s) intervenção(s)
+							 				SI - sem intervenção(s)
+							 				TA - tumorectomia alargada
+							 				TM - totalização masectomia
+							 				MTPP - masectomia poupadora (inclui masectomia poupadora e masectomia poupadora total)
+							 				BE - biópsia excisional
+							 				FP - fistulectomia periareolar
+							 				A - alargamento margens
+							 				MRM - masectomia radical modificada
+							 				EM - eversão mamilo
+							 				MRT - masectomia redução terapeutica
+							 				MTPCAM - masectomia poupadora CAM
+							 				MT - masectomia simples
+							 				E - exérese
+							 				LG - laqueação galactoforos
+							 				(aqui tem siglas com poucos casos, mas é aceitavel dada a alargada quantidade de procedimentos, nao me cabe a mim ver os mais importantes nem se observa um dominante para que possa chamar "outros" aos restantes. dataset perderia qualidade)
+							 		- Intervençao axila -> manter coluna, normalizar (0,1,2,3...). Valores atípicos ficam como "outros", e com um número próprio;
+							 				{OI, SI, GS, EA}
+							 				 0    1   2   3 
+							 				OI - outra(s) intervenção(s)
+							 				SI - sem intervenção(s)
+							 				GS - biópsia gânglio sentinela
+							 				EA - esvaziamento axilar
+							 		- Outras intervenções -> eliminar coluna;
+							 - Parte cinzenta
+							 		- Dias -> manter coluna;
+							 				[0;infinito]
+							 		- Antibiótico -> manter coluna, normalizar;
+							 				{0,1}
+							 		- Hipocoag. -> manter coluna, normalizar;
+							 				{0,1}
+							 - Parte rosa
+							 		- Data Dx -> eliminar coluna;
+							 		- Dias pós-op. -> eliminar coluna;
+							 		- Complicação -> eliminar coluna;
+							 		- Tratamento -> eliminar coluna;
+							 		- Dias Tx -> eliminar coluna.
+							 - ultima coluna manter
+							 		- normalizar, eliminar nulos e eliminar noise
+							 				{0,1}
+							 		- complicação = complicação da cirurgia e complicaçao pos cirurgia
+							 			(cirurgia correu mal, pós cirurgia nao foi bom e morreu ou houve necessidade de reoperar [pq correu mal], não recuperou bem no pós, etc -> é tudo relevante para ser estudado, o background do doente, p.e., pode ter implicações nisto)
+
+4 - Modeling --------------------------------------------------------------------------------------
+
+	Modelos escolhidos: - Naive Bayes (NB, TOP 10 algorithms);
+						- Logistic Regression (LR, considerado o algoritmo com melhor precisão, dentro dos de classificação);
+						- Random Forest (RF);
+						- Support Vector Machines (SVM, TOP 10 algorithms, considerado o mais robusto e preciso);
+						- k-Nearest Neighbors (kNN, TOP 10 algorithms).
+
+	Fórmula a utilizar: DMMn = Af * Si * DMTy * SMc * DAb * TGt
+						
+						Tipo problema 		Af := {Classificação}
+						Cenários 	  		Si := {S1, S2, S3, S4, S5, S6}
+						Modelos 	  		DMTy := {NB, LR, RF, SVM, kNN}
+						Tipo treino	  		SMc := {Cross Validation, Percentage Split}
+						Oversampling  		DAb := {Sem oversampling, Com oversampling}
+						(se der overfitting fazer mais ou menos oversampling)
+						(oversampling 150 + 12 = 162 doentes
+			 			12 -> 24 doentes com complicações)
+						Variável target 	TGt := {Complicação vs sem complicação}
+
+						Assim, o modelo de dados será DMM = {1 Approach, 6 Scenarios, 5 Techniques, 2 Sampling Methods, 2
+						Data Approaches, 1 Target} com um total de 120 modelos induzidos.
+
+	Especificação de cenários: - S1: todas as colunas;
+							   - S2: parte verde; 
+							   	(se background do doente tem influencia nas complicações);
+							   - S3: parte azul;
+							   	(se problema do doente e intervençao tem influencia nas complicações);
+							   - S4: parte cinzenta;
+							   	(se info pós-operatório tem influencia nas complicações);
+							   - S5: parte verde + variável be/maligno; 
+							   	(se background do doente + tipo tumor tem influencia nas complicações);
+							   - S6: parte azul + cinzenta.
+							   	(se info do problema do doente e intervenção + pós-operatório tem influencia nas complicações).
+							   
+							   (Fazer diferentes datasets para os diferentes cenários)
+
+5 - Evaluation ------------------------------------------------------------------------------------
+
+	Depende se organizarmos as tabelas por modelos, cenários, etc
