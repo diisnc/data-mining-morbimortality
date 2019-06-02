@@ -1,0 +1,23 @@
+Fórmula a utilizar: DMMn = Af * Si * DMTy * SMc * DAb * TGt
+						
+						Tipo problema 		Af := {Classificação}
+						Cenários 	  		Si := {S1, S2, S3, S4, S5, S6}
+						Modelos 	  		DMTy := {NB, LR, RF, SVM, kNN}
+						Tipo treino	  		SMc := {Cross Validation, Percentage Split}
+						Oversampling  		DAb := {Sem oversampling, Com oversampling}
+						(se der overfitting fazer mais ou menos oversampling)
+						(oversampling 150 + 12 = 162 doentes
+			 			12 -> 24 doentes com complicações)
+						Variável target 	TGt := {Complicação vs sem complicação}
+
+						Assim, o modelo de dados será DMM = {1 Approach, 6 Scenarios, 5 Techniques, 2 Sampling Methods, 2
+						Data Approaches, 1 Target} com um total de 120 modelos induzidos.
+
+	Especificação de cenários:
+							   - S4: parte cinzenta; (VITOR)
+							   	(se info pós-operatório tem influencia nas complicações);
+							
+							   - S6: parte azul + cinzenta. (VITOR)
+							   	(se info do problema do doente e intervenção + pós-operatório tem influencia nas complicações).
+							   
+							   (Fazer diferentes datasets para os diferentes cenários)
