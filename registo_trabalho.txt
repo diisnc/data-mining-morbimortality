@@ -1,4 +1,4 @@
-Passos CRISP-DM:
+﻿Passos CRISP-DM:
 	
 1 - Business Understanding ------------------------------------------------------------------------
 	
@@ -155,14 +155,14 @@ Passos CRISP-DM:
 						Assim, o modelo de dados será DMM = {1 Approach, 6 Scenarios, 5 Techniques, 2 Sampling Methods, 2
 						Data Approaches, 1 Target} com um total de 120 modelos induzidos.
 
-	Especificação de cenários: - S1: todas as colunas;
+	Especificação de cenários: - S1: todas as colunas; (TARRAAAXOOO BOOOOOOOM)
 							   - S2: parte verde; (CAMPOS)
 							   	(se background do doente tem influencia nas complicações);
 							   - S3: parte azul; (CAMPOS)
 							   	(se problema do doente e intervençao tem influencia nas complicações);
 							   - S4: parte cinzenta; (VITOR)
 							   	(se info pós-operatório tem influencia nas complicações);
-							   - S5: parte verde + variável be/maligno; 
+							   - S5: parte verde + variável be/maligno; (TARRAAAXOOO BOOOOOOOM)
 							   	(se background do doente + tipo tumor tem influencia nas complicações);
 							   - S6: parte azul + cinzenta. (VITOR)
 							   	(se info do problema do doente e intervenção + pós-operatório tem influencia nas complicações).
