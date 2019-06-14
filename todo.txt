@@ -19,7 +19,7 @@ FEITO
 
 - segundo paragrafo da conclusão PÔR NO ABSTRACT (Vitor)
 
-
+- tabela deixar só accuracy, precision e specificity - PÔR tabela + pequena (Campos)
 
 
 //////////////////
@@ -29,14 +29,9 @@ NAO FEITO
 
 - secção metodos 3.3 (por referencias de artigos, ou sites, mas artigos era melhor)
 
-
 - passar tudo para ingles, tabelas e quando falamos de atributos (preparation, etc) (Tarraxo)
 
-
-- tabela deixar só accuracy, precision e specificity - PÔR tabela + pequena (Campos)
-
-
-- conclusão falta falar mais do future work, explicar mais, (mau pq tinhamos poucos atributos, ou isto ou aquilo), como melhorar
+- conclusão falta falar mais do future work, explicar mais, (mau pq tinhamos poucos atributos, ou isto ou aquilo), como melhorar (Campos)
 
 - melhorar referências
 
