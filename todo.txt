@@ -1,3 +1,4 @@
+FEITO
 - refazer abstract (Vitor)
 	- problema
 	- objetivos / obj principal
@@ -11,14 +12,17 @@
 
 - secção metodos 3.3 (por referencias de artigos, ou sites, mas artigos era melhor)
 
+FEITO
 - tirar grafico pagina 7 do inicio da pagina (Vitor)
 
 - passar tudo para ingles, tabelas e quando falamos de atributos (preparation, etc) (Tarraxo)
 
-- tirar gráficos da secção data preparation, ficar só os da data understanding e falar da classe
+- tirar gráficos da secção data preparation, ficar só os da data understanding e falar da classe (Vitor)
 
+FEITO
 - secção modeling 1º pôr cenários, depois é q explicamos (Vitor)
 
+FEITO
 - deixar só evaluation e pôr o conteúdo do evaluation e discussion (Vitor)
 
 - tabela deixar só accuracy, precision e specificity - PÔR tabela + pequena (Campos)
@@ -28,6 +32,7 @@
 - "in table 7" REMOVER DO TEXTO (secção discussion)
 	- perceber, dentro dos proprios cenarios, o q é q influencia p ter melhor resultados, se tirar ou por atributos influencia, pq é q o atibuto tal , na nossa opiniao, é o mais influente
 
+FEITO
 - segundo paragrafo da conclusão PÔR NO ABSTRACT (Vitor)
 
 - conclusão falta falar mais do future work, explicar mais
