@@ -17,6 +17,7 @@ FEITO
 
 - passar tudo para ingles, tabelas e quando falamos de atributos (preparation, etc) (Tarraxo)
 
+FEITO
 - tirar gráficos da secção data preparation, ficar só os da data understanding e falar da classe (Vitor)
 
 FEITO
@@ -29,8 +30,9 @@ FEITO
 
 - as outras tabelas acho q ele pediu p pôr noutro pdf? [n ouvi bem] --- > enviar este pdf assim + no domingo o corrigido
 
+FEITO
 - "in table 7" REMOVER DO TEXTO (secção discussion)
-	- perceber, dentro dos proprios cenarios, o q é q influencia p ter melhor resultados, se tirar ou por atributos influencia, pq é q o atibuto tal , na nossa opiniao, é o mais influente
+	- perceber, dentro dos proprios cenarios, o q é q influencia p ter melhor resultados, se tirar ou por atributos influencia, pq é q o atibuto tal , na nossa opiniao, é o mais influente (VITOR)
 
 FEITO
 - segundo paragrafo da conclusão PÔR NO ABSTRACT (Vitor)
