@@ -21,6 +21,7 @@ FEITO
 
 - tabela deixar só accuracy, precision e specificity - PÔR tabela + pequena (Campos)
 
+- conclusão falta falar mais do future work, explicar mais, (mau pq tinhamos poucos atributos, ou isto ou aquilo), como melhorar (Campos)
 
 //////////////////
 NAO FEITO
@@ -30,8 +31,6 @@ NAO FEITO
 - secção metodos 3.3 (por referencias de artigos, ou sites, mas artigos era melhor)
 
 - passar tudo para ingles, tabelas e quando falamos de atributos (preparation, etc) (Tarraxo)
-
-- conclusão falta falar mais do future work, explicar mais, (mau pq tinhamos poucos atributos, ou isto ou aquilo), como melhorar (Campos)
 
 - melhorar referências
 
